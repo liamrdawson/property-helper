@@ -1,7 +1,7 @@
-import express from 'express';
+import { getHtml } from './lib/scraper';
 
-const app = express();
+async function startScrape() {
+  console.log(await getHtml());
+}
 
-app.listen(5678, () =>
-  console.log(`example app running on port http://localhost:5678`)
-);
+startScrape();

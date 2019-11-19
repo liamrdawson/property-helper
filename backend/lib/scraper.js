@@ -11,11 +11,11 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
     `https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E93554&minBedrooms=${minBeds}&maxPrice=${maxPrice}&radius=3.0&propertyTypes=flat&primaryDisplayPropertyType=flats&includeSSTC=false&mustHave=newHome&dontShow=retirement&furnishTypes=&keywords=`
   );
   const $ = cheerio.load(html);
-  const span = $(`.propertyCard-priceValue`).text();
-  const modSpan = span
+  const propertyPrice = $(`.propertyCard-priceValue`).text();
+  const priceList = propertyPrice
     .split(' ')
     .filter(place => place !== '')
     .map(price => price);
-  console.log(modSpan);
-  return span;
+  console.log(priceList);
+  return priceList;
 }

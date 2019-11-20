@@ -1,6 +1,6 @@
 # **Property Helper**
 
-A JavaScript web crawler built to help first time buyers find the right home.
+A JavaScript web crawler built to help first time buyers find the right home. The crawler will aggregate results from a number of property sale websites to show the most up to date and relvant properties on the market.
 
 ## **MVP**
 As a user I can...

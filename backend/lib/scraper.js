@@ -32,9 +32,6 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
     count += 1;
     return propData;
   });
-  console.log(locationList);
-  console.log(priceList);
   console.log(propertyData);
-  return locationList;
-  // return priceList;
+  return propertyData;
 }

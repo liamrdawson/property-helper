@@ -19,12 +19,22 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
     .split('  ')
     .filter(index => index !== '')
     .filter(index => index !== '\n');
-  // const priceList = propertyPrice
-  //   .split(' ')
-  //   .filter(place => place !== '')
-  //   .map(price => price);
+  const priceList = propertyPrice
+    .split(' ')
+    .filter(place => place !== '')
+    .map(price => price);
+  let count = 0;
+  const propertyData = locationList.map(property => {
+    const propData = {
+      location: property,
+      price: priceList[count],
+    };
+    count += 1;
+    return propData;
+  });
   console.log(locationList);
-  // console.log(priceList);
+  console.log(priceList);
+  console.log(propertyData);
   return locationList;
   // return priceList;
 }

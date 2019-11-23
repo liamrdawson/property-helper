@@ -12,10 +12,15 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
   );
   const $ = cheerio.load(html);
   const propertyPrice = $(`.propertyCard-priceValue`).text();
-  const priceList = propertyPrice
-    .split(' ')
-    .filter(place => place !== '')
-    .map(price => price);
-  console.log(priceList);
-  return priceList;
+  const propertyLocation = $(
+    `.propertyCard-address, address.propertyCard-address`
+  ).text();
+  // const priceList = propertyPrice
+  //   .split(' ')
+  //   .filter(place => place !== '')
+  //   .map(price => price);
+  console.log(propertyLocation);
+  // console.log(priceList);
+  return propertyLocation;
+  // return priceList;
 }

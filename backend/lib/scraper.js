@@ -6,7 +6,7 @@ export async function getHtml(url) {
   return html;
 }
 
-export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
+export async function getRightMoveProperties(minBeds = 2, maxPrice = 380000) {
   const html = await getHtml(
     `https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E93554&minBedrooms=${minBeds}&maxPrice=${maxPrice}&radius=3.0&propertyTypes=flat&primaryDisplayPropertyType=flats&includeSSTC=false&mustHave=newHome&dontShow=retirement&furnishTypes=&keywords=`
   );
@@ -15,6 +15,7 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
   const propertyLocation = $(
     `.propertyCard-address, address.propertyCard-title`
   ).text();
+  const propertyName = $(`.propertyCard-title, h2`).text();
   const locationList = propertyLocation
     .split('  ')
     .filter(index => index !== '')
@@ -23,15 +24,22 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 375000) {
     .split(' ')
     .filter(place => place !== '')
     .map(price => price);
+  const propertyNameList = propertyName
+    .split('  ')
+    .filter(place => place !== '')
+    .filter(place => place !== 'Property')
+    .filter(place => place !== '\n');
   let count = 0;
   const propertyData = locationList.map(property => {
     const propData = {
       location: property,
       price: priceList[count],
+      name: propertyNameList[count],
     };
     count += 1;
     return propData;
   });
+
   console.log(propertyData);
   return propertyData;
 }

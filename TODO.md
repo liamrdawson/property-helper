@@ -2,7 +2,7 @@
 
 ## **To Do List**
 
-- [ ] Currently the program returns a list of house prices in an array. Instead, return an array of objects - with each object containing the price, location, name, short description, array of image sources.
+- [x] Currently the program returns a list of house prices in an array. Instead, return an array of objects - with each object containing the price, location, name, short description, array of image sources.
 
 ```javascript
 houses = [

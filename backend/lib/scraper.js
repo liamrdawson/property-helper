@@ -16,6 +16,10 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 380000) {
     `.propertyCard-address, address.propertyCard-title`
   ).text();
   const propertyName = $(`.propertyCard-title, h2`).text();
+  const shortDescription = $(`span[data-bind="html: summary"], span`)
+    .text()
+    .split('  ')
+    .filter(index => index.length > 120);
   const locationList = propertyLocation
     .split('  ')
     .filter(index => index !== '')
@@ -32,14 +36,16 @@ export async function getRightMoveProperties(minBeds = 2, maxPrice = 380000) {
   let count = 0;
   const propertyData = locationList.map(property => {
     const propData = {
+      name: propertyNameList[count],
       location: property,
       price: priceList[count],
-      name: propertyNameList[count],
+      shortDescription: shortDescription[count],
     };
     count += 1;
     return propData;
   });
 
   console.log(propertyData);
+
   return propertyData;
 }
